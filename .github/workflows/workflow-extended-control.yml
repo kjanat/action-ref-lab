@@ -1,0 +1,13 @@
+name: workflow-extended-control
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  probe:
+    uses: kjanat/action-ref-fixtures/.github/workflows/marker.yml@9075590323dbb575e1a31c044179e1d7275cd40c
