@@ -1,0 +1,20 @@
+name: workflow-nesting-action-dollar-none
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+      experiment:
+        type: string
+        required: true
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  probe:
+    uses: "kjanat/action-ref-fixtures/.github/workflows/action-dollar-none.yml@f246546a80a6619dabe2859c34984e647f364dcd"
+    with:
+      experiment: ${{ inputs.experiment }}
+      case_id: workflow-nesting-action-dollar-none
