@@ -1,0 +1,20 @@
+name: workflow-syntax-control
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+      experiment:
+        type: string
+        required: true
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  probe:
+    uses: "kjanat/action-ref-fixtures/.github/workflows/marker.yml@b931f146cd23d97fba6510e4107babc11ddc96c3"
+    with:
+      experiment: ${{ inputs.experiment }}
+      case_id: workflow-syntax-control

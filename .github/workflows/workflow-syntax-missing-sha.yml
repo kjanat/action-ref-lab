@@ -1,0 +1,20 @@
+name: workflow-syntax-missing-sha
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+      experiment:
+        type: string
+        required: true
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  probe:
+    uses: "kjanat/action-ref-fixtures/.github/workflows/marker.yml@1234567890abcdef1234567890abcdef12345678"
+    with:
+      experiment: ${{ inputs.experiment }}
+      case_id: workflow-syntax-missing-sha

@@ -1,0 +1,20 @@
+name: workflow-syntax-tag-object-sha
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+      experiment:
+        type: string
+        required: true
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  probe:
+    uses: "kjanat/action-ref-fixtures/.github/workflows/marker.yml@209d8c8e4770cd3eaf2e56a765397a1a6bd289fa"
+    with:
+      experiment: ${{ inputs.experiment }}
+      case_id: workflow-syntax-tag-object-sha
