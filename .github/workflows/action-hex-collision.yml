@@ -1,0 +1,21 @@
+name: action-hex-collision
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - id: probe
+        uses: kjanat/action-ref-fixtures@a2d8d3e295b4b40a5917ed8862fcea1bbf411096
+      - name: Record observed marker
+        env:
+          MARKER: ${{ steps.probe.outputs.marker }}
+        run: printf 'COMMITISH_OBSERVED=%s\n' "$MARKER"

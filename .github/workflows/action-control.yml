@@ -1,0 +1,21 @@
+name: action-control
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - id: probe
+        uses: kjanat/action-ref-fixtures@9075590323dbb575e1a31c044179e1d7275cd40c
+      - name: Record observed marker
+        env:
+          MARKER: ${{ steps.probe.outputs.marker }}
+        run: printf 'COMMITISH_OBSERVED=%s\n' "$MARKER"

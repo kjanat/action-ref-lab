@@ -1,0 +1,13 @@
+name: workflow-missing
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  probe:
+    uses: kjanat/action-ref-fixtures/.github/workflows/marker.yml@missing-ref

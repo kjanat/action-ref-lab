@@ -1,0 +1,13 @@
+name: workflow-short-sha
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+permissions:
+  contents: read
+jobs:
+  probe:
+    uses: kjanat/action-ref-fixtures/.github/workflows/marker.yml@a2d8d3e2
