@@ -1,0 +1,20 @@
+name: workflow-repository-double-slash
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+      experiment:
+        type: string
+        required: true
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  probe:
+    uses: "kjanat//action-ref-fixtures/.github/workflows/marker.yml@9f360a2064ec17e3478d1223e8b420a6dfce6b5a"
+    with:
+      experiment: ${{ inputs.experiment }}
+      case_id: workflow-repository-double-slash
