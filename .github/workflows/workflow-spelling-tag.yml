@@ -1,0 +1,20 @@
+name: workflow-spelling-tag
+run-name: ${{ inputs.attempt }}
+on:
+  workflow_dispatch:
+    inputs:
+      attempt:
+        type: string
+        required: true
+      experiment:
+        type: string
+        required: true
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  probe:
+    uses: kjanat/action-ref-fixtures/.github/workflows/marker.yml@spelling-tag
+    with:
+      experiment: ${{ inputs.experiment }}
+      case_id: workflow-spelling-tag
